@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: php-fpm-exporter
+  namespace: monitoring  # Replace with your desired namespace
+spec:
+  selector:
+    matchLabels:
+      app: php-fpm-exporter
+  template:
+    metadata:
+      labels:
+        app: php-fpm-exporter
+    spec:
+      containers:
+        - name: php-fpm-exporter
+          image: your-php-fpm-exporter-image:tag  # Replace with your PHP-FPM Exporter image and tag
+          ports:
+            - name: web
+              containerPort: 9253  # Exposed port for PHP-FPM Exporter metrics

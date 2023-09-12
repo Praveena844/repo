@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: php-fpm-exporter-service
+  namespace: monitoring  # Replace with your desired namespace
+spec:
+  selector:
+    app: php-fpm-exporter
+  ports:
+    - name: web
+      protocol: TCP
+      port: 9253  # Port to access PHP-FPM Exporter metrics
+      targetPort: 9253
+  type: ClusterIP  # Use ClusterIP for internal access or NodePort/LoadBalancer for external access
